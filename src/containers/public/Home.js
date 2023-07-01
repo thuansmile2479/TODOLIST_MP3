@@ -1,8 +1,13 @@
 import React from 'react'
+import { Header } from '../../components'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className='overflow-y-auto'>
+      <div className='h-[70px]  flex items-center'>
+        <Header />
+      </div>
+    </div>
   )
 }
 
