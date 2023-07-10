@@ -4,7 +4,7 @@ const { MdOutlineLibraryMusic, MdOutlineFeed, TbChartArcs, FiPieChart } = icons
 
 export const sidebarMenu = [
     {
-        path: 'mynusic',
+        path: 'mymusic',
         text: 'Cá nhân',
         icons: <MdOutlineLibraryMusic side={24}/>
     },
