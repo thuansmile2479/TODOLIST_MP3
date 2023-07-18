@@ -52,13 +52,8 @@ const Slider = () => {
     const handleClickBanner = (item) => {
         if (item?.type === 1) {
             dispatch(actions.setCurSongId(item.encodeId))
-            dispatch(actions.play(true))
-        } else if (item?.type === 4) {
-            const albumPath = item?.link?.split('.')[0]
-            navigate(albumPath)
         }
     }
-
     return (
         <div className='w-full overflow-hidden px-[59px]'>
             <div className='flex w-full gap-8 pt-8'>

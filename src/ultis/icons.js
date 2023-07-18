@@ -3,6 +3,8 @@ import { FiPieChart } from 'react-icons/fi'
 import { TbChartArcs } from 'react-icons/tb' 
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi' 
 import { FiSearch } from 'react-icons/fi' 
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai' 
+import { BsThreeDots } from 'react-icons/bs' 
 
 
 const icons = {
@@ -12,7 +14,10 @@ const icons = {
     MdOutlineFeed,
     HiArrowNarrowLeft,
     HiArrowNarrowRight,
-    FiSearch
+    FiSearch,
+    AiFillHeart,
+    AiOutlineHeart,
+    BsThreeDots
 }
 
 export default icons
