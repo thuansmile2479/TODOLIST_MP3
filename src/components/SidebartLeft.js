@@ -1,4 +1,3 @@
-import React from 'react'
 import logo from '../assets/logo.png'
 import { sidebarMenu } from '../ultis/menu'
 import { NavLink } from 'react-router-dom'
@@ -23,7 +22,6 @@ const SidebarLeft = () => {
                         key={item.path}
                         end={item.end}
                         className={({ isActive }) => isActive ? activeStyle : notActiveStyle}
-
                     >
                         {item.icons}
                         <span>{item.text}</span>
@@ -33,5 +31,4 @@ const SidebarLeft = () => {
         </div>
     )
 }
-
 export default SidebarLeft
