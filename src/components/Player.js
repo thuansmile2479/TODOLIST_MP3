@@ -30,17 +30,19 @@ const Player = () => {
             ])
             if (res1.data.err === 0) {
                 setSongInfo(res1.data.data)
+                // setCurSeconds(0)
             }
             if (res2.data.err === 0) { 
                 audio.pause()
                 setAudio(new Audio(res2.data.data['128']))
             }
-            // else {
-            //     dispatch(actions.play(false))
-            //     audioEl.current.src = undefined
-            //     audioEl.current.pause()
-            //     toast.info(res2.data.msg)
-            // }  
+            else {
+                setAudio(new Audio())
+                dispatch(actions.play(false)) 
+                toast.warn(res2.data.msg)
+                setCurSeconds(0)
+                thumbRef.current.style.cssText = `right: 100%`
+            }  
         }
         fetchDetailSong()
     }, [curSongId])
@@ -50,23 +52,21 @@ const Player = () => {
     // }
 
     useEffect(() => {
-        audio.load()
-        if (isPlaying) audio.play()
-    }, [audio])
-
-    useEffect(() => {
+        intervalId && clearInterval(intervalId)
+        audio.pause()
+        audio.load() 
         if (isPlaying) {
-            const thumbEl = document.getElementById('thumb-progress')
+            audio.play()
             intervalId = setInterval(() => {
                 let percent = Math.round(audio.currentTime * 10000 / songInfo.duration) / 100
-                console.log(percent)
+                // console.log(percent)
                 thumbRef.current.style.cssText = `right: ${100 - percent}%`
                 setCurSeconds(Math.round(audio.currentTime))
             }, 200)
-        } else {
-            intervalId && clearInterval(intervalId)
-        }
-    }, [isPlaying])
+        } 
+    }, [audio])
+
+    
 
     const handleTogglePlayMusic = async () => {
         if (isPlaying) {
@@ -85,6 +85,14 @@ const Player = () => {
     //         thumbRef.current.cssText = `right: ${percent}%`
     //     }
     // }, [audio.currentTime])
+
+    const handleClickProgressbar = (e) => {
+        const trackRect = trackRef.current.getBoundingClientRect()
+        const percent = Math.round((e.clientX = trackRect.left) * 10000 / trackRect.width) / 100
+        thumbRef.current.style.cssText = `right: ${100 - percent}%`
+        audio.currentTime = percent * songInfo.duration / 100
+        setCurSeconds(Math.round(percent * songInfo.duration / 100))
+    }
 
     return (
         <div className='bg-main-400 px-5 h-full flex'>
@@ -119,7 +127,7 @@ const Player = () => {
                 </div>
                 <div className='w-full flex items-center justify-center gap-3 text-xs'>
                     <span>{moment.utc( curSeconds* 1000).format('mm:ss')}</span>
-                    <div ref={trackRef} className='bg-[rgba(0,0,0,0.1)] relative m-auto h-[3px] w-4/5 rounded-l-full rounded-r-full'>
+                    <div className='bg-[rgba(0,0,0,0.1)] horver:h-[8px] cursor-pointer relative m-auto h-[3px] w-4/5 rounded-l-full rounded-r-full' onClick={handleClickProgressbar} ref={trackRef}>
                         <div ref={thumbRef} className='bg-[#0e8080] absolute top-0 left-0 h-[3px] rounded-l-full rounded-r-full'></div>
                     </div>
                     <span>{moment.utc(songInfo?.duration * 1000).format('mm:ss')}</span>
