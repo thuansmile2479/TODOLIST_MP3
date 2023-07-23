@@ -1,13 +1,13 @@
 import React  from 'react'
-import { Slider } from '../../components'
+import { Section, Slider  } from '../../components'
 
 const Home = () => {
 
 
     return (
-        <div className='overflow-y-auto w-full'>
-
+        <div className='overflow-y-auto w-full'> 
             <Slider />
+            <Section />
         </div>
     )
 }

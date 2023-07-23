@@ -10,14 +10,15 @@ const Public = () => {
                     <SidebarLeft />
                 </div>
                 <div className='flex-auto border border-red-500'>
-                    <div className='h-[70px] px-[59px] flex items-center mb-5'>
+                    <div className='h-[70px] px-[59px] flex items-center '>
                         <Header />
                     </div>
                     <Outlet />
+                    <div className="w-full h-[500px]"></div>
                 </div>
-                <div className='w-[329px] hidden 1600:flex flex-none border border-green-500 animate-slide-left'>
+                {/* <div className='w-[329px] hidden 1600:flex flex-none border border-green-500 animate-slide-left'>
                     <SidebarRight />
-                </div>
+                </div> */}
             </div>
             <div className='fixed bottom-0 left-0 right-0 h-[90px]'>
                 <Player />
