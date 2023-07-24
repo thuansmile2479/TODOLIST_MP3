@@ -6,8 +6,9 @@ import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi'
 import { FiSearch } from 'react-icons/fi' 
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'  
 import { CiRepeat, CiShuffle } from 'react-icons/ci'
-import { BsThreeDots, BsFillPlayFill, BsPauseFill, BsMusicNoteBeamed, BsDot } from 'react-icons/bs'
+import { BsThreeDots, BsFillPlayFill, BsPauseFill, BsMusicNoteBeamed, BsDot, BsFillMicFill } from 'react-icons/bs'
 import { TbRepeatOnce } from 'react-icons/tb' 
+import { SlVolume1, SlVolume2, SlVolumeOff } from 'react-icons/sl' 
 
 
 const icons = {
@@ -29,7 +30,9 @@ const icons = {
     BsPauseFill,
     BsMusicNoteBeamed,
     BsDot,
-    TbRepeatOnce
+    TbRepeatOnce,
+    BsFillMicFill,
+    SlVolume1, SlVolume2, SlVolumeOff
 }
 
 export default icons

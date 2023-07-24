@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Outlet } from 'react-router-dom'
 import { Player, SidebarLeft, SidebarRight, Header } from '../../components'
 
 const Public = () => {
+    const [isShowRightSlideBar, setIsShowRightSlidebar] = useState(true)
     return (
         <div className='w-full relative h-screen flex flex-col bg-main-300'>
             <div className='w-full h-full flex flex-auto'>
@@ -21,7 +22,7 @@ const Public = () => {
                 </div> */}
             </div>
             <div className='fixed bottom-0 left-0 right-0 h-[90px]'>
-                <Player />
+                <Player setIsShowRightSlidebar={setIsShowRightSlidebar} />
             </div>
         </div>
     )

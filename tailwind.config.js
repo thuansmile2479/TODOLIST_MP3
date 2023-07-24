@@ -78,8 +78,8 @@ module.exports = {
         'slide-right': 'slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
         'slide-left': 'slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
         'slide-left2': 'slide-left2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;',
-        'rotate-center': 'rotate-center 10s linear infinite;',
-        'rotate-center-pause': 'rotate-center-pause 0.3s linear 2 both;',
+        'rotate-center': 'rotate-center 15s linear infinite;',
+        'rotate-center-pause': 'rotate-center-pause 0.4s linear 1 both;',
       },
       flex: {
         '4': '4 4 0%'
