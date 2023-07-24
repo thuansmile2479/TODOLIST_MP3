@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import moment from 'moment'
 
 
-const { AiOutlineHeart, BsThreeDots, MdSkipNext, MdSkipPrevious, CiRepeat, BsPauseFill, BsFillPlayFill, CiShuffle } = icons
+const { AiOutlineHeart, BsThreeDots, MdSkipNext, MdSkipPrevious, CiRepeat, BsPauseFill, BsFillPlayFill, CiShuffle, TbRepeatOnce } = icons
 var intervalId
 const Player = () => {
 
@@ -18,7 +18,7 @@ const Player = () => {
     const [audio, setAudio] = useState(new Audio())
     const [curSeconds, setCurSeconds] = useState()
     const [isShuffe, setIsShuffe] = useState(false)
-    const [isRepeat, setIsRepeat] = useState(false)
+    const [repeatMode, setRepeatMode] = useState(0)
     // console.log(audioEl)
     const dispatch = useDispatch()
     const thumbRef = useRef()
@@ -76,22 +76,22 @@ const Player = () => {
 
     useEffect(() => {
         const handleEnded = () => {
-           console.log(isShuffe);
-           if(isShuffe) {
-            handleShuffle()
-           } else if(isRepeat) {
-            handleNextSong()
-           }else {
-            audio.pause()
-            dispatch(actions.play(false))
-           }
+            console.log(isShuffe);
+            if (isShuffe) {
+                handleShuffle()
+            } else if (repeatMode) {
+                repeatMode === 1 ? handleRepeatOne() : handleNextSong()
+            } else {
+                audio.pause()
+                dispatch(actions.play(false))
+            }
         }
         audio.addEventListener('ended', handleEnded)
 
         return () => {
             audio.removeEventListener('ended', handleEnded)
         }
-    }, [audio, isShuffe, isRepeat])
+    }, [audio, isShuffe, repeatMode])
 
 
 
@@ -143,6 +143,11 @@ const Player = () => {
             dispatch(actions.play(true))
         }
     }
+
+    const handleRepeatOne = () => {
+        audio.play()
+    }
+
     const handleShuffle = () => {
         const randomIndex = Math.round(Math.random() * songs?.length) - 1
         dispatch(actions.setCurSongId(songs[randomIndex].encodeId))
@@ -184,9 +189,11 @@ const Player = () => {
                         {isPlaying ? <BsPauseFill size={30} /> : <BsFillPlayFill size={30} />}
                     </span>
                     <span onClick={handleNextSong} className={`${!songs ? 'text-gray-500' : 'cursor-pointer'}`} ><MdSkipNext size={24} /></span>
-                    <span className={`cursor-pointer ${isRepeat && 'text-purple-600'}`} title='Bật phát lại tất cả'
-                    onClick={() => setIsRepeat(prev => !prev)}
-                    ><CiRepeat size={24} /></span>
+                    <span className={`cursor-pointer ${repeatMode && 'text-purple-600'}`} title='Bật phát lại tất cả'
+                        onClick={() => setRepeatMode(prev => prev === 2 ? 0 : prev + 1)}
+                    >
+                        {repeatMode === 1 ? <TbRepeatOnce size={24} /> :  <CiRepeat size={24} />}
+                    </span>
 
                 </div>
                 <div className='w-full flex items-center justify-center gap-3 text-xs'>

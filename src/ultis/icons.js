@@ -7,6 +7,7 @@ import { FiSearch } from 'react-icons/fi'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'  
 import { CiRepeat, CiShuffle } from 'react-icons/ci'
 import { BsThreeDots, BsFillPlayFill, BsPauseFill, BsMusicNoteBeamed, BsDot } from 'react-icons/bs'
+import { TbRepeatOnce } from 'react-icons/tb' 
 
 
 const icons = {
@@ -27,7 +28,8 @@ const icons = {
     BsFillPlayFill,
     BsPauseFill,
     BsMusicNoteBeamed,
-    BsDot
+    BsDot,
+    TbRepeatOnce
 }
 
 export default icons
